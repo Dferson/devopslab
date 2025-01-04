@@ -28,6 +28,10 @@ jobs:
       - name: Unit Test
         run: python -m unittest -v test
 
+      - name: New Relic License
+        run: |
+          sed -i "s/licensekey/${{ secrets.NEW_RELIC_LICENSE_KEY }}/g" Dockerfile
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
